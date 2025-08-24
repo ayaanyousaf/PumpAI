@@ -1,2 +1,30 @@
-@import "tailwindcss"; /* Import tailwindcss from Vite plugin 
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,800;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,400;1,600&display=swap');
+@import "tailwindcss"; /* Import tailwindcss from Vite plugin */
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-titleFont: "Merriweather Sans", sans-serif;
+  --font-titillium: "Titillium Web", sans-serif; 
+
+  /* Website theme colours */
+  --color-ice-cold: #a0d2eb;
+  --color-freeze-purple: #e5eaf5;
+  --color-medium-purple: #d0bdf4;
+  --color-purple-pain: #8458b3;
+  --color-dark-purple: #17091f;
+}
+
+@layer utilities {
+  .font-bodyFont {
+    font-family: var(--font-titillium);
+    font-weight: 400;
+  }
+
+  .font-brandFont {
+    font-family: var(--font-titillium);
+    font-weight: 600;
+    font-style: italic;
+  }
+}
