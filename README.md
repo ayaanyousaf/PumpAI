@@ -1,2 +1,2 @@
 # PumpAI
-PumpAI is an AI-powered fitness tracker for weightlifters. Log workouts, track sleep &amp; water, spot PRs, and get ML-powered consistency predictions &amp; smart training recommendations.
+PumpAI is an AI-powered fitness tracker designed for weightlifters and fitness enthusiasts. Users can log workouts, track sets, reps, and personal records, and monitor habits like sleep and water intake. Unlike standard trackers, PumpAI analyzes training data to help you form better lifestyle habits and improve your gym performance. An integrated machine learning module predicts workout consistency and recommends adjustments, helping athletes train smarter, not just harder.
