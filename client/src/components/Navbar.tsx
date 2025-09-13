@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { cn } from "../lib/utils";
 
 const navItems = [
-  { name: "Home", href: "#dashboard" },
-  { name: "Workouts", href: "#workouts" },
-  { name: "Nutrition", href: "#nutrition" },
-  { name: "Progress", href: "#progress" },
-  { name: "AI Trainer", href: "#trainer" },
+  { name: "Home", href: "/" },
+  { name: "Workouts", href: "/workouts" },
+  { name: "Nutrition", href: "/nutrition" },
+  { name: "Progress", href: "/progress" },
+  { name: "AI Trainer", href: "/trainer" },
 ];
 
 function Navbar() {
@@ -25,25 +25,25 @@ function Navbar() {
   return (
     <nav
       className={cn(
-        "fixed w-full z-50 transition-all duration-300 bg-primary/80",
-        isScrolled ? "bg-primary/40 backdrop-blur-sm shadow-xs py-3 " : "py-4"
+        "fixed top-0 w-full z-50 transition-all duration-300 bg-primary/80",
+        isScrolled ? "bg-bg-primary/60 backdrop-blur-sm shadow-xs py-4" : "py-2"
       )}
     >
-      <div className="flex justify-between items-center container mx-auto">
+      <div className="grid grid-cols-3 pt-2 justify-between items-center container mx-auto">
         {/* Left side of Navbar (branding)*/}
-        <div className="flex-1 flex justify-start items-center">
-          <a href="#landing" className="ml-6">
-            <img src="/PumpAI_Text.png" className="w-36 h-12"></img>
+        <div className="flex justify-start items-center">
+          <a href="/" className="ml-16">
+            <img src="/PumpAI_Text.png" className="w-32 h-10"></img>
           </a>
         </div>
 
         {/* Center of Navbar (navlinks) DESKTOP ONLY */}
-        <div className="hidden md:flex items-center rounded-full px-4 py-2 bg-gray-900/50 space-x-8 mx-auto">
+        <div className="hidden md:flex justify-center items-center shadow-sm rounded-full gap-12 py-2 mx-auto whitespace-nowrap">
           {navItems.map((item, key) => (
             <a
               key={key}
               href={item.href}
-              className="bg-gray-900 h-7 px-2 shadow-lg rounded-full hover:text-blue-400 transition-colors duration-300"
+              className="rounded-full hover:text-brand link-hover"
             >
               {item.name}
             </a>
@@ -51,8 +51,12 @@ function Navbar() {
         </div>
 
         {/* Right side of Navbar (profile)*/}
-        <div className="flex-1 flex justify-end items-center space-x-4 mr-4">
-          Profile
+        <div className="flex justify-end items-center space-x-4 mr-10">
+          <img
+            src="/PumpAI_Circle.png"
+            alt="Profile Image"
+            className="rounded-full shadow-xl h-12 w-12"
+          />
         </div>
       </div>
     </nav>

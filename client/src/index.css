@@ -2,10 +2,34 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #000000;  
-  --color-primary-text: #FFFFFF; 
-  --color-secondary: #66F607; 
+  /* Theme colour variables */
+  --color-bg-primary: #0F0F0F; 
+  --color-bg-secondary: #101A1A; 
+  --color-text-primary: #FFFFFF; 
+  --color-brand: #D7FA00;
+  --color-accent: #5E17EB; 
 }
+
+@utility text-glow-white {
+  @apply relative;
+  text-shadow: 0 0 50px #777777; 
+}
+
+@utility glow-white {
+  @apply relative;
+  box-shadow: 0 0 10px #FFFFFF; 
+}
+
+@utility transparent-button {
+  @apply border border-accent text-text-primary hover:bg-bg-primary/10 font-medium
+         transition-all duration-300 hover:scale-[1.04] active:scale-95
+         px-6 py-3 rounded-full hover:shadow-[0_0_10px_rgba(139,92,246,0.5)];
+}
+
+@utility link-hover {
+  @apply transition duration-200 hover:scale-[1.06] hover:shadow-lg;
+}
+
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -13,8 +37,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--color-text-primary); 
+  background-color: var(--color-bg-primary); 
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
