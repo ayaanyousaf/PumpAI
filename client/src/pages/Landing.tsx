@@ -1,26 +1,31 @@
 export default function Landing() {
   return (
-    <div className="flex flex-col justify-center items-center">
-      <a href="#" className="mb-10">
-        <img
-          src="/PumpAI.svg"
-          className="h-100 w-100 justify-self-center"
-          alt="PumpAI Logo"
-        />
-      </a>
-      <div className="text-center block max-w-4xl items-center justify-self-center justify-center">
-        <h1 className="text-3xl font-semibold mb-4">PumpAI</h1>
-        <p className="">
-          PumpAI is an AI-powered fitness tracker designed for weightlifters and
-          fitness enthusiasts. Users can log workouts, track sets, reps, and
-          personal records, and monitor habits like sleep and water intake.
-          Unlike standard trackers, PumpAI analyzes training data to surface
-          actionable insights — from PR detection and adherence streaks to
-          correlations between lifestyle habits and gym performance. An
-          integrated machine learning module predicts workout consistency and
-          recommends adjustments, helping athletes train smarter, not just
-          harder.
+    <div className="flex min-h-dvh bg-radial from-bg-primary from-50% via-bg-primary/80 to-accent/20 justify-center items-center">
+      <div className="flex flex-col pt-20 max-w-4xl text-center font-[Poppins] max-w-4xl items-center justify-center">
+        <h1 className="text-[4.5rem] text-glow-white font-semibold mb-6">
+          Train{" "}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-brand">
+            smart,
+          </span>{" "}
+          lift{" "}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-accent">
+            more.
+          </span>
+        </h1>
+        <p className="w-2xl text-text-primary/80 shadow-sm">
+          Log workouts, track nutrition, and unlock personalized insights with
+          PumpAI — your AI-powered trainer built to help you train smarter.
         </p>
+
+        {/* Landing page buttons */}
+        <div className="flex gap-8 pt-10 w-full justify-center items-center">
+          <a href="#" className="transparent-button">
+            Get started
+          </a>
+          <a href="#" className="transparent-button">
+            Learn more
+          </a>
+        </div>
       </div>
     </div>
   );
