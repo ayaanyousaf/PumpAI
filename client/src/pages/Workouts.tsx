@@ -1,7 +1,5 @@
-import React from 'react';
+import React from "react";
 
 export default function Workouts() {
-  return (
-    <div>Workouts</div>
-  )
+  return <div>Workouts</div>;
 }

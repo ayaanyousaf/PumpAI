@@ -5,7 +5,7 @@ import Footer from "./Footer";
 
 function AppLayout() {
   return (
-    <div className="flex flex-col min-h-dvh">
+    <div className="flex flex-col pt-20 min-h-dvh">
       <header>
         {/* Navbar content */}
         <Navbar />

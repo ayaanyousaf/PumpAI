@@ -30,6 +30,10 @@
   @apply transition duration-200 hover:scale-[1.06] hover:shadow-lg;
 }
 
+@utility radial-bg {
+  @apply bg-radial from-bg-primary from-50% via-bg-primary/80 to-accent/20; 
+}
+
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
