@@ -1,5 +1,6 @@
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import Summaries from "../components/sections/Summaries";
 
 export default function Landing() {
   return (
@@ -8,18 +9,18 @@ export default function Landing() {
       <Navbar />
 
       <div className="flex min-h-dvh justify-center items-center">
-        <div className="flex flex-col pt-20 max-w-4xl text-center font-[Poppins] max-w-4xl items-center justify-center">
-          <h1 className="text-[4.5rem] text-glow-white font-semibold mb-6">
+        <div className="flex flex-col pt-20 max-w-4xl text-center font-[Poppins] items-center justify-center">
+          <h1 className="text-2xl md:text-[4.5rem] text-glow-white font-semibold mb-6">
             Train{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-brand">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-text-primary to-brand">
               smart,
             </span>{" "}
             lift{" "}
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-accent">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-text-primary to-accent">
               more.
             </span>
           </h1>
-          <p className="w-2xl text-text-primary/80 shadow-sm">
+          <p className="w-2xl text-text-primary/80">
             Log workouts, track nutrition, and unlock personalized insights with
             PumpAI — your AI-powered trainer built to help you train smarter.
           </p>
@@ -35,6 +36,9 @@ export default function Landing() {
           </div>
         </div>
       </div>
+
+      {/* Render summary sections */}
+      <Summaries />
 
       {/* Render the footer seperately for the landing page */}
       <Footer />
