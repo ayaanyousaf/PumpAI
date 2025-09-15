@@ -21,19 +21,32 @@
 }
 
 @utility transparent-button {
-  @apply border border-accent text-text-primary hover:bg-bg-primary/10 font-medium
-         transition-all duration-300 hover:scale-[1.04] active:scale-95
-         px-6 py-3 rounded-full hover:shadow-[0_0_10px_rgba(139,92,246,0.5)];
+  @apply border border-brand text-text-primary hover:bg-bg-primary/10 font-medium
+         transition-all duration-300 hover:scale-[1.03] active:scale-95
+         px-6 py-3 rounded-full hover:shadow-[0_0_8px_var(--color-brand)];
 }
 
 @utility link-hover {
-  @apply transition duration-200 hover:scale-[1.06] hover:shadow-lg;
+  @apply transition duration-200 hover:scale-[1.06];
 }
 
 @utility radial-bg {
-  @apply bg-radial from-bg-primary from-50% via-bg-primary/80 to-accent/20; 
+  @apply bg-radial from-bg-primary from-50% via-bg-primary/80 to-brand/10; 
 }
 
+@layer base {
+  :root {
+    --color-bg-primary: #FAFAFA;
+    --color-bg-secondary: #101A1A; 
+    --color-text-primary: #1A1A1A;
+  }
+
+  .dark {
+    --color-bg-primary: #0F0F0F; 
+    --color-bg-secondary: #101A1A; 
+    --color-text-primary: #FFFFFF; 
+  }
+}
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
