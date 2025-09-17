@@ -3,9 +3,10 @@
 
 @theme {
   /* Theme colour variables */
-  --color-bg-primary: #0F0F0F; 
-  --color-bg-secondary: #101A1A; 
-  --color-text-primary: #FFFFFF; 
+  --color-bg-primary: var(--color-bg-primary); 
+  --color-bg-secondary: var(--color-bg-secondary); 
+  --color-text-primary: var(--color-text-primary); 
+  --color-text-secondary: var(--color-text-secondary); 
   --color-brand: #D7FA00;
   --color-accent: #5E17EB; 
 }
@@ -26,6 +27,12 @@
          px-6 py-3 rounded-full hover:shadow-[0_0_8px_var(--color-brand)];
 }
 
+@utility brand-button {
+  @apply bg-brand text-text-secondary font-medium
+         transition-all duration-300 hover:scale-[1.02] active:scale-95
+         px-6 py-2 rounded-full hover:shadow-[0_0_8px_var(--color-brand)];
+}
+
 @utility link-hover {
   @apply transition duration-200 hover:scale-[1.06];
 }
@@ -39,26 +46,24 @@
     --color-bg-primary: #FAFAFA;
     --color-bg-secondary: #101A1A; 
     --color-text-primary: #1A1A1A;
+    --color-text-secondary: #FFFFFF; 
+
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color: var(--color-text-primary); 
+    background-color: var(--color-bg-primary); 
+    color-scheme: light dark;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   .dark {
     --color-bg-primary: #0F0F0F; 
     --color-bg-secondary: #101A1A; 
     --color-text-primary: #FFFFFF; 
+    --color-text-secondary: #1A1A1A; 
   }
-}
-
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: var(--color-text-primary); 
-  background-color: var(--color-bg-primary); 
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
