@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import AppLayout from "./components/AppLayout";
 import Register from "./pages/Register";
 import { useEffect } from "react";
+import Login from "./pages/Login";
 
 function App() {
   // Apply theme settings globally
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route index element={<Landing />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<AppLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/workouts" element={<Workouts />} />
