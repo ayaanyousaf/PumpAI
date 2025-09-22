@@ -81,4 +81,40 @@ const loginUser = expressAsyncHandler(async (req, res) => {
   }
 });
 
-export { registerUser, loginUser };
+// @desk Send password reset link to user
+// @route POST /api/auth/login
+// @access public
+const forgotPassword = expressAsyncHandler(async (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    res.status(400);
+    throw new Error("Email is required.");
+  }
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    res.status(200).json({
+      message: "If an account with that email exists, a reset link was sent.",
+    });
+    return;
+  }
+
+  const resetToken = jwt.sign(
+    { id: user.id },
+    process.env.JWT_SECRET as string,
+    { expiresIn: "5m" }
+  );
+
+  // Send reset password link (log it for now)
+  console.log(
+    `Password reset link: http://localhost:5173/reset-password/${resetToken}`
+  );
+
+  res.status(200).json({
+    message: "If an account with that email exists, a reset link was sent.",
+  });
+});
+
+export { registerUser, loginUser, forgotPassword };

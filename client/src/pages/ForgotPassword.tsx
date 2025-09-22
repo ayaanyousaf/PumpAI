@@ -53,7 +53,7 @@ function ForgotPassword() {
             <p className="text-red-500">{errors.email.message}</p>
           )}
           <p className="mb-2 text-center text-sm w-3xs">
-            If an account exists with this email, you will receive a code in
+            If an account exists with this email, you'll receive a reset link in
             your inbox.
           </p>
 
