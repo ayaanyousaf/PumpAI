@@ -81,8 +81,8 @@ const loginUser = expressAsyncHandler(async (req, res) => {
   }
 });
 
-// @desk Send password reset link to user
-// @route POST /api/auth/login
+// @desk Send password reset link to user (forgotPassword)
+// @route POST /api/auth/forgot-password
 // @access public
 const forgotPassword = expressAsyncHandler(async (req, res) => {
   const { email } = req.body;
@@ -107,7 +107,7 @@ const forgotPassword = expressAsyncHandler(async (req, res) => {
     { expiresIn: "5m" }
   );
 
-  // Send reset password link (log it for now)
+  // Send reset password link (console log it for now)
   console.log(
     `Password reset link: http://localhost:5173/reset-password/${resetToken}`
   );
@@ -117,4 +117,38 @@ const forgotPassword = expressAsyncHandler(async (req, res) => {
   });
 });
 
-export { registerUser, loginUser, forgotPassword };
+// @desk Update the user's password
+// @route POST /api/auth/reset-password
+// @access public
+const resetPassword = expressAsyncHandler(async (req, res) => {
+  const { token, newPassword } = req.body;
+
+  if (!token || !newPassword) {
+    return res
+      .status(400)
+      .json({ message: "New password and token required." });
+  }
+
+  let decoded: any;
+  try {
+    decoded = jwt.verify(token, process.env.JWT_SECRET as string);
+  } catch (err) {
+    return res.status(400).json({ message: "Invalid or expired token." });
+  }
+
+  // Search for existing user object
+  const user = await User.findById(decoded.id);
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found." });
+  }
+
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+  user.password = hashedPassword;
+  await user.save();
+
+  res.status(200).json({ message: "Password reset successfully." });
+});
+
+export { registerUser, loginUser, forgotPassword, resetPassword };
