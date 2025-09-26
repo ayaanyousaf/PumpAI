@@ -14,6 +14,7 @@ const resetSchema = z
   });
 
 type FormValues = z.infer<typeof resetSchema>;
+
 function ResetPassword() {
   const {
     register,
@@ -26,10 +27,12 @@ function ResetPassword() {
   // Function to handle form submit
   const onSubmit = async (data: FormValues) => {
     try {
+      const token = new URLSearchParams(window.location.search).get("token"); // fetch token from reset URL
+
       const res = await fetch("http://localhost:5000/api/auth/reset-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ token, newPassword: data.password }),
       });
 
       const result = await res.json();
