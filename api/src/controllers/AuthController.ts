@@ -1,6 +1,6 @@
 import expressAsyncHandler from "express-async-handler";
 import * as bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import User from "../models/UserModel";
 
 // @desk Register a user
@@ -124,23 +124,32 @@ const resetPassword = expressAsyncHandler(async (req, res) => {
   const { token, newPassword } = req.body;
 
   if (!token || !newPassword) {
-    return res
-      .status(400)
-      .json({ message: "New password and token required." });
+    res.status(400).json({ message: "New password and token required." });
+    return;
   }
 
-  let decoded: any;
+  // Create interface to allow for id type to be string
+  interface ResetTokenPayload extends JwtPayload {
+    id: string;
+  }
+
+  let decoded: ResetTokenPayload; // use defined interface instead for JwtPayload
   try {
-    decoded = jwt.verify(token, process.env.JWT_SECRET as string);
+    decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET as string
+    ) as ResetTokenPayload;
   } catch (err) {
-    return res.status(400).json({ message: "Invalid or expired token." });
+    res.status(400).json({ message: "Invalid or expired token." });
+    return;
   }
 
   // Search for existing user object
   const user = await User.findById(decoded.id);
 
   if (!user) {
-    return res.status(404).json({ message: "User not found." });
+    res.status(404).json({ message: "User not found." });
+    return;
   }
 
   const hashedPassword = await bcrypt.hash(newPassword, 10);
