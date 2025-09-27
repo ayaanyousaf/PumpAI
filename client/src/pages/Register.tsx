@@ -3,14 +3,20 @@ import { useForm } from "react-hook-form";
 import z from "zod";
 import { cn } from "../lib/utils";
 
-const registerSchema = z.object({
-  username: z
-    .string()
-    .min(3, "Username must be at least 4 characters.")
-    .max(20, "Username must be less than 20 characters."),
-  email: z.string().email("Invalid email address."),
-  password: z.string().min(6, "Password must be at least 6 characters."),
-});
+const registerSchema = z
+  .object({
+    username: z
+      .string()
+      .min(3, "Username must be at least 4 characters.")
+      .max(20, "Username must be less than 20 characters."),
+    email: z.string().email("Invalid email address."),
+    password: z.string().min(6, "Password must be at least 6 characters."),
+    confirmPassword: z.string().min(6, "Field cannot be empty."),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match.",
+    path: ["confirmPassword"],
+  });
 
 type formValues = z.infer<typeof registerSchema>;
 
@@ -49,6 +55,7 @@ function Register() {
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-8 h-full max-w-4xl"
         >
+          {/* Username field */}
           <input
             {...register("username")}
             className="rounded-xl border border-text-primary p-2 w-70"
@@ -58,6 +65,7 @@ function Register() {
             <p className="text-red-500">{errors.username.message}</p>
           )}
 
+          {/* Email address field */}
           <input
             {...register("email")}
             className="rounded-xl border border-text-primary p-2 w-70"
@@ -67,6 +75,7 @@ function Register() {
             <p className="text-red-500">{errors.email.message}</p>
           )}
 
+          {/* Password field */}
           <input
             {...register("password")}
             className="rounded-xl border border-text-primary p-2 w-70"
@@ -75,6 +84,17 @@ function Register() {
           />
           {errors.password && (
             <p className="text-red-500">{errors.password.message}</p>
+          )}
+
+          {/* Confirm password field */}
+          <input
+            {...register("confirmPassword")}
+            className="rounded-xl border border-text-primary p-2 w-70"
+            type="password"
+            placeholder="Confirm password"
+          />
+          {errors.confirmPassword && (
+            <p className="text-red-500">{errors.confirmPassword.message}</p>
           )}
 
           {/* Submit button */}
