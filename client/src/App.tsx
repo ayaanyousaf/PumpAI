@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { AuthProvider } from "./context/AuthContext";
 import Landing from "./pages/Landing";
 import Dashboard from "./pages/Dashboard";
 import Workouts from "./pages/Workouts";
@@ -8,7 +10,6 @@ import Trainer from "./pages/Trainer";
 import NotFound from "./pages/NotFound";
 import AppLayout from "./components/AppLayout";
 import Register from "./pages/Register";
-import { useEffect } from "react";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
@@ -22,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <AuthProvider>
       <BrowserRouter>
         <Routes>
           <Route index element={<Landing />} />
@@ -40,7 +41,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-    </>
+    </AuthProvider>
   );
 }
 
