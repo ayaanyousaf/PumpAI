@@ -2,6 +2,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { cn } from "../lib/utils";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address."),
@@ -19,6 +21,9 @@ function Login() {
     resolver: zodResolver(loginSchema),
   });
 
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
   // Function to handle form submit
   const onSubmit = async (data: formValues) => {
     try {
@@ -29,9 +34,17 @@ function Login() {
       });
 
       const result = await res.json();
+
+      if (res.ok && result.token) {
+        login(result.token);
+        navigate("/dashboard");
+      } else {
+        alert("Login failed");
+      }
       console.log(result);
     } catch (error) {
       console.log(error);
+      alert("Something went wrong. Please try again.");
     }
   };
 
