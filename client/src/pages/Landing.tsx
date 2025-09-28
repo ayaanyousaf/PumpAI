@@ -27,7 +27,7 @@ export default function Landing() {
 
           {/* Landing page buttons */}
           <div className="flex gap-8 pt-10 w-full justify-center items-center">
-            <a href="#" className="transparent-button">
+            <a href="/register" className="transparent-button">
               Get started
             </a>
             <a href="#" className="transparent-button">

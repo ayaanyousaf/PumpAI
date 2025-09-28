@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
 import { cn } from "../lib/utils";
 import ThemeToggle from "./ThemeToggle";
+import { useAuth } from "../context/AuthContext";
 
-const navItems = [
+const loggedOutItems = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Features", href: "#features" },
+];
+
+const loggedInItems = [
   { name: "Home", href: "/" },
   { name: "Workouts", href: "/workouts" },
   { name: "Nutrition", href: "/nutrition" },
@@ -11,6 +18,7 @@ const navItems = [
 ];
 
 function Navbar() {
+  const { isAuth, logout } = useAuth(); // use custom react hook for auth state
   const [isScrolled, setIsScrolled] = useState(false);
 
   const theme = localStorage.getItem("theme");
@@ -46,7 +54,7 @@ function Navbar() {
 
         {/* Center of Navbar (navlinks) DESKTOP ONLY */}
         <div className="hidden md:flex justify-center items-center gap-12 py-2 mx-auto whitespace-nowrap">
-          {navItems.map((item, key) => (
+          {(isAuth ? loggedInItems : loggedOutItems).map((item, key) => (
             <a
               key={key}
               href={item.href}
@@ -59,11 +67,28 @@ function Navbar() {
 
         {/* Right side of Navbar (profile)*/}
         <div className="flex justify-end items-center space-x-4 mr-10">
-          <img
-            src="/PumpAI_Circle.png"
-            alt="Profile Image"
-            className="rounded-full shadow-xl h-12 w-12"
-          />
+          {isAuth ? (
+            <>
+              <img
+                src="/PumpAI_Circle.png"
+                alt="Profile Image"
+                className="rounded-full shadow-xl h-12 w-12"
+              />
+              <button onClick={logout} className="transparent-button py-2">
+                Log out
+              </button>
+            </>
+          ) : (
+            <>
+              <a href="/register" className="brand-button py-2">
+                Sign up
+              </a>
+              <a href="/login" className="transparent-button py-2">
+                Log in
+              </a>
+            </>
+          )}
+
           <ThemeToggle />
         </div>
       </div>
