@@ -10,7 +10,7 @@ const loggedOutItems = [
 ];
 
 const loggedInItems = [
-  { name: "Home", href: "/" },
+  { name: "Home", href: "/dashboard" },
   { name: "Workouts", href: "/workouts" },
   { name: "Nutrition", href: "/nutrition" },
   { name: "Progress", href: "/progress" },
@@ -74,7 +74,10 @@ function Navbar() {
                 alt="Profile Image"
                 className="rounded-full shadow-xl h-12 w-12"
               />
-              <button onClick={logout} className="transparent-button py-2">
+              <button
+                onClick={logout}
+                className="transparent-button py-2 cursor-pointer"
+              >
                 Log out
               </button>
             </>
