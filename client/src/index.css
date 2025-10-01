@@ -41,6 +41,10 @@
   @apply bg-radial from-bg-primary from-50% via-bg-primary/80 to-brand/10; 
 }
 
+@utility card-hover {
+  @apply transition duration-300 hover:scale-[1.02] shadow; 
+}
+
 @layer base {
   :root {
     --color-bg-primary: #FAFAFA;
