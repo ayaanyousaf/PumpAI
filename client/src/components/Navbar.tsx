@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { cn } from "../lib/utils";
 import ThemeToggle from "./ThemeToggle";
 import { useAuth } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
 
 const loggedOutItems = [
   { name: "Home", href: "/" },
@@ -21,7 +22,7 @@ function Navbar() {
   const { isAuth, logout } = useAuth(); // use custom react hook for auth state
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const theme = localStorage.getItem("theme");
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
