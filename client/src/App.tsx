@@ -13,6 +13,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import { ThemeProvider } from "./context/ThemeContext";
 
 function App() {
   // Apply theme settings globally
@@ -24,23 +25,25 @@ function App() {
 
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<Landing />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route path="/" element={<AppLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/workouts" element={<Workouts />} />
-            <Route path="/nutrition" element={<Nutrition />} />
-            <Route path="/progress" element={<Progress />} />
-            <Route path="/trainer" element={<Trainer />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <ThemeProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<Landing />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/" element={<AppLayout />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/workouts" element={<Workouts />} />
+              <Route path="/nutrition" element={<Nutrition />} />
+              <Route path="/progress" element={<Progress />} />
+              <Route path="/trainer" element={<Trainer />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </AuthProvider>
   );
 }
