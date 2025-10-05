@@ -1,4 +1,12 @@
+import { Cell, PieChart, Pie, ResponsiveContainer } from "recharts";
+
 function Dashboard() {
+  const macroData = [
+    { name: "Protein", value: 90, color: "#00FF28" },
+    { name: "Carbs", value: 200, color: "#0056B4" },
+    { name: "Fats", value: 70, color: "#AD5900" },
+  ];
+
   return (
     <div className="container mx-auto px-4 py-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
@@ -36,16 +44,33 @@ function Dashboard() {
           <p className="text-center text-2xl">0 months, 2 weeks, 4 days</p>
         </div>
 
-        {/* Nutrition Summary */}
+        {/* Daily Macros */}
         <div className="bg-bg-secondary p-6 font-[Poppins] rounded-xl shadow card-hover col-span-1 md:col-span-2">
           <h2 className="text-xl font-semibold mb-4 text-center">
             Daily Macros
           </h2>
-          <div className="flex justify-center gap-20 text-4xl">
-            {/* TODO: Add pie chart here */}
-            <p>P: 90g</p>
-            <p>C: 200g</p>
-            <p>F: 70g</p>
+          <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+            {/* Macro Pie Chart */}
+            <div className="w-64 h-64">
+              <ResponsiveContainer>
+                <PieChart>
+                  <Pie data={macroData} dataKey="value" outerRadius={80} label>
+                    {macroData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+
+            <div className="space-y-3 text-lg">
+              {macroData.map((m) => (
+                <div key={m.name} className="flex justify-between gap-4 w-40">
+                  <span className="font-medium">{m.name}</span>
+                  <span className="text-gray-400">{m.value}g</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
